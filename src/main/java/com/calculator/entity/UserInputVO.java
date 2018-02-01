@@ -2,13 +2,17 @@ package com.calculator.entity;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 public class UserInputVO implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@NotNull
 	private int firstInput;
+	@NotNull
 	private int secondInput;
 	
 	

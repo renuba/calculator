@@ -31,8 +31,7 @@ public class CalculatorController {
 
 		ResponseVO responseVO = new ResponseVO();
 		int result =calculatorService.add(userInputVO);
-
-			//restTemplate.postForEntity(url, request, responseType);
+;
 			responseVO.setResult(result);
 			responseVO.setMessage("Addition of "+userInputVO.getFirstInput()+" and "+userInputVO.getSecondInput()+" is "+result);
 		
@@ -44,7 +43,7 @@ public class CalculatorController {
 		ResponseVO responseVO = new ResponseVO();
 		int result =calculatorService.subs(userInputVO);
 
-			//restTemplate.postForEntity(url, request, responseType);
+		
 			responseVO.setResult(result);
 			responseVO.setMessage("Substraction of "+userInputVO.getFirstInput()+" and "+userInputVO.getSecondInput()+" is "+result);
 		
@@ -57,9 +56,20 @@ public class CalculatorController {
 		ResponseVO responseVO = new ResponseVO();
 		int result =calculatorService.multiply(userInputVO);
 
-			//restTemplate.postForEntity(url, request, responseType);
 			responseVO.setResult(result);
 			responseVO.setMessage("Multiply of "+userInputVO.getFirstInput()+" and "+userInputVO.getSecondInput()+" is "+result);
+		
+		return responseVO;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/calculator/div", produces = "application/json", consumes = "application/json")
+	public ResponseVO divide(@RequestBody UserInputVO userInputVO) throws RemoteException, ServiceException{
+
+		ResponseVO responseVO = new ResponseVO();
+		int result =calculatorService.divide(userInputVO);
+
+			responseVO.setResult(result);
+			responseVO.setMessage("Division of "+userInputVO.getFirstInput()+" and "+userInputVO.getSecondInput()+" is "+result);
 		
 		return responseVO;
 	}

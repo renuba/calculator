@@ -1,16 +1,11 @@
 package com.calculator.service;
 
 import java.rmi.RemoteException;
-
 import javax.xml.rpc.ServiceException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tempuri.Calculator;
 
 import com.calculator.entity.UserInputVO;
-
-
 
 @Service
 public class CalculatorService {
@@ -26,5 +21,8 @@ public class CalculatorService {
 	public int multiply(UserInputVO userInputVO) throws RemoteException, ServiceException {		
 		return new Calculator().getCalculatorSoap().multiply(userInputVO.getFirstInput(), userInputVO.getSecondInput());
 	
+	}
+	public int divide(UserInputVO userInputVO) {
+		return new Calculator().getCalculatorSoap().divide(userInputVO.getFirstInput(), userInputVO.getSecondInput());
 	}
 }

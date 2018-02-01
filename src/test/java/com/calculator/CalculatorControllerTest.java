@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -32,7 +33,7 @@ public class CalculatorControllerTest {
 		// Testing POST :: addition
 		ResponseEntity<ResponseVO> response = restTemplate.postForEntity("/calculator/add", userInputVO, ResponseVO.class);
 		ResponseVO responseVO = response.getBody();
-		assertEquals(91, responseVO.getResult());
+		assertEquals(192, responseVO.getResult());
 		assertNotNull(responseVO.getMessage());
 		
 }
@@ -46,7 +47,7 @@ public class CalculatorControllerTest {
 		// Testing POST :: substraction
 		ResponseEntity<ResponseVO> response = restTemplate.postForEntity("/calculator/subs", userInputVO, ResponseVO.class);
 		ResponseVO responseVO = response.getBody();
-		assertEquals(89, responseVO.getResult());
+		assertEquals(188, responseVO.getResult());
 		assertNotNull(responseVO.getMessage());
 		
 }
@@ -60,8 +61,23 @@ public class CalculatorControllerTest {
 		// Testing POST :: multiply
 		ResponseEntity<ResponseVO> response = restTemplate.postForEntity("/calculator/multiply", userInputVO, ResponseVO.class);
 		ResponseVO responseVO = response.getBody();
-		assertEquals(90, responseVO.getResult());
+		assertEquals(380, responseVO.getResult());
 		assertNotNull(responseVO.getMessage());
 		
 }
+	
+	@Test
+	public void testdivide() throws Exception {
+
+		ObjectMapper mapper = new ObjectMapper();
+		UserInputVO userInputVO = mapper.readValue(new ClassPathResource("jsons/UserInputDataCorrect").getFile(),UserInputVO.class);
+		// Testing POST :: divide
+		ResponseEntity<ResponseVO> response = restTemplate.postForEntity("/calculator/div", userInputVO, ResponseVO.class);
+		ResponseVO responseVO = response.getBody();
+		assertEquals(95, responseVO.getResult());
+		assertNotNull(responseVO.getMessage());	
+		
+}
+	
+	
 }
